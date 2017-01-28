@@ -29,6 +29,18 @@
 			<version>1.0</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.example.ejb</groupId>
+			<artifactId>CommonResources</artifactId>
+			<version>1.0</version>
+			<type>zip</type>
+			<classifier>resources</classifier>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>TestWeb</finalName>
@@ -56,6 +68,27 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>${war-plugin-version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>unpack-shared-resources</id>
+						<goals>
+							<goal>unpack-dependencies</goal>
+						</goals>
+						<phase>generate-resources</phase>
+						<configuration>
+							<outputDirectory>${project.build.directory}/generated-resources</outputDirectory>
+							<includeArtifacIds>CommonResources</includeArtifacIds>
+							<includeGroupIds>com.example.ejb</includeGroupIds>
+							<excludeTransitive>true</excludeTransitive>
+							<!--use as much as needed to be specific...also scope,type,classifier 
+								etc -->
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

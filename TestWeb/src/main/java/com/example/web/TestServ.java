@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.example.ejb3.TestInf;
 import com.example.ejb3.TestInf2;
 
@@ -31,6 +33,8 @@ public class TestServ extends HttpServlet {
 	@EJB(beanName="TestBean2")
 	public TestInf2 testBean2;
 	
+	public static Logger logger = Logger.getLogger(TestServ.class);
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -41,7 +45,7 @@ public class TestServ extends HttpServlet {
 
 		if(null == testBean){
 			
-			System.out.println("Injecting bean via JNDI.... Dependency Injection didn't worked");
+			logger.info("Injecting bean via JNDI.... Dependency Injection didn't worked");
 			try {
 				testBean = (TestInf) new InitialContext().lookup("java:global/TestEar-1.0/TestEjb/TestBean!com.example.ejb3.TestInf");
 			} catch (NamingException e) {
@@ -51,7 +55,8 @@ public class TestServ extends HttpServlet {
 			}	
 		}
 		else {
-			System.out.println("Bean Injected using DI Successfully !!!.... Dependency Injection worked");
+			//logger.info("Bean Injected using DI Successfully !!!.... Dependency Injection worked");
+			logger.info("Bean Injected using DI Successfully !!!.... Dependency Injection worked");
 		}
 
 		if(null != testBean){
@@ -66,7 +71,7 @@ public class TestServ extends HttpServlet {
 		
 		if(null != testOtehrBean){
 
-			System.out.println("TEstBeanOther Injected Successfully in Servlet");
+			logger.info("TEstBeanOther Injected Successfully in Servlet");
 			testOtehrBean.sayGoodMorning();
 		}
 		else
@@ -76,7 +81,7 @@ public class TestServ extends HttpServlet {
 		
 		if(null != testBean2){
 
-			System.out.println("testBean2 Injected Successfully in Servlet");
+			logger.info("testBean2 Injected Successfully in Servlet");
 			testBean2.sayGoodMorning();
 		}
 		else

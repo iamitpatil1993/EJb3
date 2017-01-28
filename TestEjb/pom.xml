@@ -24,17 +24,37 @@
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.jboss.spec.javax.ejb</groupId>
 			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
 			<version>1.0.2.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.example.ejb</groupId>
+			<artifactId>CommonResources</artifactId>
+			<version>1.0</version>
+			<type>zip</type>
+			<classifier>resources</classifier>
+			<scope>provided</scope>
 		</dependency>
 
 	</dependencies>
 
 	<build>
 		<finalName>TestEjb</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>${project.build.directory}/generated-resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -47,6 +67,27 @@
 				<configuration>
 					<ejbVersion>${ejb-spec-version}</ejbVersion>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>unpack-shared-resources</id>
+						<goals>
+							<goal>unpack-dependencies</goal>
+						</goals>
+						<phase>generate-resources</phase>
+						<configuration>
+							<outputDirectory>${project.build.directory}/generated-resources</outputDirectory>
+							<includeArtifacIds>CommonResources</includeArtifacIds>
+							<includeGroupIds>com.example.ejb</includeGroupIds>
+							<excludeTransitive>true</excludeTransitive>
+							<!--use as much as needed to be specific...also scope,type,classifier 
+								etc -->
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
