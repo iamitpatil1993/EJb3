@@ -79,6 +79,7 @@
 					<version>2.2-beta-2</version>
 				</plugin>
 			</plugins>
+
 		</pluginManagement>
 	</build>
 
