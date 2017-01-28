@@ -3,6 +3,8 @@ package com.example.ejb3;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
+import org.apache.log4j.Logger;
+
 //This is Local-Client-View 	
 @Stateless
 public class TestBean implements TestInf {
@@ -15,15 +17,17 @@ public class TestBean implements TestInf {
 	@EJB(beanName="TestBeanOther")
 	public TestInf2 testBean2;
 
+	public static Logger logger = Logger.getLogger(TestBean.class);
+
 	@Override
 	public void sayHello() {
-		// TODO Auto-generated method stub
-		System.out.println("Hello World!");
+		logger.info("Hello World!");
+
 
 		if(testBean2 != null)
 			testBean2.sayGoodMorning();
 		else
-			System.err.println("TestOtherBean Injection failed");
+			logger.info("TestOtherBean Injection failed");
 	}
 
 	@Override

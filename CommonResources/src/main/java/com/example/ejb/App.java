@@ -1,4 +1,4 @@
-package com.example.ejb3;
+package com.example.ejb;
 
 /**
  * Hello world!
@@ -6,7 +6,7 @@ package com.example.ejb3;
  */
 public class App 
 {
-	public static void main( String[] args )
+    public static void main( String[] args )
     {
         System.out.println( "Hello World!" );
     }

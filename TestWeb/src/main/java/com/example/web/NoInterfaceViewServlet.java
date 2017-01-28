@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.example.ejb3.NoInterfaceViewBean;
 
 /**
@@ -28,6 +30,8 @@ public class NoInterfaceViewServlet extends HttpServlet {
 	//into .ear in which bean is packaged.
 	//In our case, since this servlet is part of same application is being packaged with same ear, our servlet can easily access bean
 
+	public static Logger logger = Logger.getLogger(NoInterfaceViewServlet.class);
+	
 	public NoInterfaceViewServlet() {
 		super();
 	}
