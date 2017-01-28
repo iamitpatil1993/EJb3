@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.example.ejb</groupId>
+    <artifactId>TestEE</artifactId>
+    <version>1.0</version>
+  </parent>
+
+  <artifactId>TestEar</artifactId>
+  <version>1.0</version>
+  <name>TestEar</name>
+  <url>http://maven.apache.org</url>
+
+	<packaging>ear</packaging>
+
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+    </dependency>
+
+<dependency>
+            <groupId>com.example.ejb</groupId>
+            <artifactId>TestEjb</artifactId>
+            <version>1.0</version>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+             <groupId>com.example.ejb</groupId>
+            <artifactId>TestWeb</artifactId>
+            <version>1.0</version>
+            <type>war</type>
+        </dependency>
+  </dependencies>
+
+
+<build>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>${ear-plugin-version}</version>
+				<configuration>
+					<version>6</version>
+					<filtering>true</filtering>
+					<defaultJavaBundleDir>lib/</defaultJavaBundleDir>
+					<modules>
+						<ejbModule>
+							<groupId>com.example.ejb</groupId>
+							<artifactId>TestEjb</artifactId>
+							<bundleFileName>TestEjb.jar</bundleFileName>
+						</ejbModule>
+						<webModule>
+							<groupId>com.example.ejb</groupId>
+							<artifactId>TestWeb</artifactId>
+							<contextRoot>/TestWeb</contextRoot>
+							<bundleFileName>TestWeb.war</bundleFileName>
+						</webModule>
+					</modules>
+					<generateApplicationXml>true</generateApplicationXml>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

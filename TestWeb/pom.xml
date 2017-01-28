@@ -1,0 +1,62 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.example.ejb</groupId>
+		<artifactId>TestEE</artifactId>
+		<version>1.0</version>
+	</parent>
+
+	<artifactId>TestWeb</artifactId>
+	<packaging>war</packaging>
+	<name>TestWeb</name>
+	<url>http://maven.apache.org</url>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.example.ejb</groupId>
+			<artifactId>TestEjb</artifactId>
+			<version>1.0</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>TestWeb</finalName>
+		<plugins>
+			<!-- compiler plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.2.11.v20150529</version>
+				<configuration>
+					<scanIntervalSeconds>5</scanIntervalSeconds>
+					<webApp>
+						<contextPath>/TestWeb</contextPath>
+					</webApp>
+					<httpConnector>
+						<port>8888</port>
+					</httpConnector>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>${war-plugin-version}</version>
+			</plugin>
+		</plugins>
+	</build>
+</project>

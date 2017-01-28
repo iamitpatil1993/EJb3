@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.example.ejb</groupId>
+		<artifactId>TestEE</artifactId>
+		<version>1.0</version>
+	</parent>
+
+	<artifactId>TestEjb</artifactId>
+	<name>TestEjb</name>
+	<url>http://maven.apache.org</url>
+
+	<packaging>ejb</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.spec.javax.ejb</groupId>
+			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
+			<version>1.0.2.Final</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<finalName>TestEjb</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ejb-plugin</artifactId>
+				<version>${ejb-plugin-version}</version>
+				<configuration>
+					<ejbVersion>${ejb-spec-version}</ejbVersion>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
