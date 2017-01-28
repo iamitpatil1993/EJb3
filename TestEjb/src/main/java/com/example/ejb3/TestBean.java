@@ -3,6 +3,7 @@ package com.example.ejb3;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
+//This is Local-Client-View 	
 @Stateless
 public class TestBean implements TestInf {
 

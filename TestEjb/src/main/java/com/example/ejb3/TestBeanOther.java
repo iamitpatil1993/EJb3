@@ -5,6 +5,7 @@ import javax.ejb.Stateless;
 /**
  * Session Bean implementation class TestBeanOther
  */
+//This is Local-Client-View
 @Stateless
 public class TestBeanOther implements TestInf2 {
 

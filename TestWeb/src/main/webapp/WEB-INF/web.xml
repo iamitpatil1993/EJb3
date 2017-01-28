@@ -3,15 +3,24 @@
 	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
-  <display-name>Archetype Created Web Application</display-name>
-  
-  <servlet>
- 	<servlet-name>TestServ</servlet-name>
-  	<servlet-class>com.example.web.TestServ</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
- 	<servlet-name>TestServ</servlet-name>
- 	<url-pattern>/serv</url-pattern> 
-  </servlet-mapping>
+	<display-name>Archetype Created Web Application</display-name>
+
+	<servlet>
+		<servlet-name>TestServ</servlet-name>
+		<servlet-class>com.example.web.TestServ</servlet-class>
+	</servlet>
+	<servlet>
+		<display-name>NoInterfaceViewServlet</display-name>
+		<servlet-name>NoInterfaceViewServlet</servlet-name>
+		<servlet-class>com.example.web.NoInterfaceViewServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>TestServ</servlet-name>
+		<url-pattern>/serv</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>NoInterfaceViewServlet</servlet-name>
+		<url-pattern>/NoInterfaceViewServlet</url-pattern>
+	</servlet-mapping>
 </web-app>
