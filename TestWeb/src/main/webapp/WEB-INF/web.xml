@@ -23,4 +23,14 @@
 		<servlet-name>NoInterfaceViewServlet</servlet-name>
 		<url-pattern>/NoInterfaceViewServlet</url-pattern>
 	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>BeanLifeCycleServlet</servlet-name>
+		<servlet-class>com.example.web.BeanLifeCycleServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BeanLifeCycleServlet</servlet-name>
+		<url-pattern>/BeanLifeCycleServlet</url-pattern>
+	</servlet-mapping>
 </web-app>
