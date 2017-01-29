@@ -1,4 +1,4 @@
-package com.example.ejb3;
+package com.example.ejb3.beans.nointerfaceview;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;

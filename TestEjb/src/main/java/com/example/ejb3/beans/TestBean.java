@@ -1,9 +1,12 @@
-package com.example.ejb3;
+package com.example.ejb3.beans;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import org.apache.log4j.Logger;
+
+import com.example.ejb3.localinterfaces.TestInf;
+import com.example.ejb3.localinterfaces.TestInf2;
 
 //This is Local-Client-View 	
 @Stateless

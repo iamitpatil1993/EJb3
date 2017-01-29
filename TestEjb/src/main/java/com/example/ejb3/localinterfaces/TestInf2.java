@@ -1,4 +1,4 @@
-package com.example.ejb3;
+package com.example.ejb3.localinterfaces;
 
 import javax.ejb.Local;
 

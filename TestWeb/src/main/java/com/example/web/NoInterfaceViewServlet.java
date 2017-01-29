@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import com.example.ejb3.NoInterfaceViewBean;
+import com.example.ejb3.beans.nointerfaceview.NoInterfaceViewBean;
+
 
 /**
  * Servlet implementation class NoInterfaceViewServlet

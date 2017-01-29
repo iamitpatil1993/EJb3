@@ -13,8 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import com.example.ejb3.TestInf;
-import com.example.ejb3.TestInf2;
+import com.example.ejb3.localinterfaces.TestInf;
+import com.example.ejb3.localinterfaces.TestInf2;
+
 
 public class TestServ extends HttpServlet {
 
