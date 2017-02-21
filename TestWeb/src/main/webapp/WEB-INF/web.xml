@@ -69,4 +69,14 @@
 		<servlet-name>PersonalDetailsServlet</servlet-name>
 		<url-pattern>/PersonalDetailsServlet</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>SingletonTestServlet</servlet-name>
+		<servlet-class>com.example.web.singleton.SingletonTestServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>SingletonTestServlet</servlet-name>
+		<url-pattern>/SingletonTestServlets</url-pattern>
+	</servlet-mapping>
 </web-app>
