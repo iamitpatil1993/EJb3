@@ -13,6 +13,11 @@
 </head>
 <body>
 
+	<%
+		if (session.getAttribute("username") == null)
+			response.sendRedirect("login.jsp");
+	%>
+	
 	<div class="col-md-2"></div>
 	<div class="col-md-8">
 		<form action="PersonalDetailsServlet" method="post">
@@ -23,15 +28,18 @@
 			</div>
 			<div class="form-group">
 				<label for="firstName">First Name</label> <input type="text"
-					class="form-control" id="firstName" placeholder="First Name">
+					class="form-control" id="firstName", name="firstName" placeholder="First Name">
 			</div>
 			<div class="form-group">
 				<label for="lastName">Last Name</label> <input type="text"
-					class="form-control" id="lastName" placeholder="Last Name">
+					class="form-control" id="lastName", name="lastName" placeholder="Last Name">
 			</div>
-			<button type="submit" class="btn btn-primary">Login</button>
+			<button type="submit" class="btn btn-primary">Save</button>
 		</form>
-	</div>
+		<p><%= request.getAttribute("message") == null ? "" : request.getAttribute("message").toString() %></p>	</div>
+		
+		<p><%= request.getAttribute("detailsMap") == null ? "" :  request.getAttribute("detailsMap").toString() %></p>
+		
 	<div class="col-md-2"></div>
 
 </body>

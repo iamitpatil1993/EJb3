@@ -25,8 +25,7 @@ public class TestBean implements TestInf {
 	@Override
 	public void sayHello() {
 		logger.info("Hello World!");
-
-
+		
 		if(testBean2 != null)
 			testBean2.sayGoodMorning();
 		else

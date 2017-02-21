@@ -50,7 +50,7 @@ public class LoginServlet extends HttpServlet {
 		
 		if(username != null && password != null) {
 			
-			if(username.equals("iamitpatil1993") && password.equals("password")) {
+			if((username.equals("iamitpatil1993") && password.equals("password")) || (username.equals("iamitpatil") && password.equals("asdf"))) {
 				returnValue = true;
 			}
 		}

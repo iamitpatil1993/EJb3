@@ -17,6 +17,11 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>com.example.ejb</groupId>
+			<artifactId>TestPojo</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 		</dependency>
@@ -41,7 +46,6 @@
 			<classifier>resources</classifier>
 			<scope>provided</scope>
 		</dependency>
-
 	</dependencies>
 
 	<build>
