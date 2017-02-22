@@ -74,9 +74,31 @@
 		<servlet-name>SingletonTestServlet</servlet-name>
 		<servlet-class>com.example.web.singleton.SingletonTestServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>AsynchronousdemoServlet</display-name>
+		<servlet-name>AsynchronousdemoServlet</servlet-name>
+		<servlet-class>com.example.web.asynchronous.AsynchronousdemoServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>AsynchronousSynchronousMixDemoServlet</display-name>
+		<servlet-name>AsynchronousSynchronousMixDemoServlet</servlet-name>
+		<servlet-class>com.example.web.asynchronous.AsynchronousSynchronousMixDemoServlet</servlet-class>
+	</servlet>
 	
 	<servlet-mapping>
 		<servlet-name>SingletonTestServlet</servlet-name>
 		<url-pattern>/SingletonTestServlets</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AsynchronousdemoServlet</servlet-name>
+		<url-pattern>/AsynchronousdemoServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AsynchronousSynchronousMixDemoServlet</servlet-name>
+		<url-pattern>/AsynchronousSynchronousMixDemoServlet</url-pattern>
 	</servlet-mapping>
 </web-app>
