@@ -14,6 +14,11 @@ public class AsynchronousDemoBean implements AsynchronousDemoBeanLocal {
 
 	private static final Logger LOGGER;
 	
+	//In EJB, there is one interface 'EjbContext' which provided access to container services. But this interface is generic interface, therefore there are 
+	//other three interfaces that are use to access container services  BUT specific to ejb bean type. 'SessionContext', 'MessageDrivenContecxt' and 'EntityContect'
+	//are three interfaces that extends 'EjbContext' interface and provide additional methods or restrict methods specific to bean type. (Session bean, MDB and entity resp.)
+	//Here we are injecting 'SessionContext' because this is session bean and we want additional services from container. We use @Resource annotation to inject
+	//these object references.
 	@Resource
 	public SessionContext context;
 	
@@ -37,7 +42,7 @@ public class AsynchronousDemoBean implements AsynchronousDemoBeanLocal {
 		buffer.append("debitCardNo : ").append(debitCardNo).append("cvv : ").append(cvv).append("cardholderName : ").append(cardholderName);
 		LOGGER.info("details : " + buffer);
 		
-	/*	//slepping thread for 20 seconds intentionally, to test async behavior
+		//slepping thread for 20 seconds intentionally, to test async behavior
 		try {
 			Thread.sleep(20000);
 		} catch (InterruptedException e) {
@@ -45,7 +50,7 @@ public class AsynchronousDemoBean implements AsynchronousDemoBeanLocal {
 			//InterruptedException is an application exception, it is subclass of Exception class and not RuntimeException or RemoteExcecption, therefore
 			//need to handle this exception here itself, can't thow this excecption outside this method
 			e.printStackTrace();
-		}*/
+		}
 		
 		LOGGER.info("Inside AsynchronousDemoBean.processPayment() ...leaving");
 	}
@@ -64,6 +69,9 @@ public class AsynchronousDemoBean implements AsynchronousDemoBeanLocal {
 			//processPayment(debitCardNo, cvv, cardholderName);
 			
 			//this method call will take place Asynchronously, since we are using sessioncontext to proxy this call
+			//using context object to get EjbObject with provided business interfaceview so that we can call method on that bean. 
+			//we need to create new bean instance, becasse we want to delegate this task to new bean. If we don't do this, and call
+			//processPayment method on current bean instance, that call will take place synchronously.
 			AsynchronousDemoBeanLocal asynchronousDemoBean = context.getBusinessObject(AsynchronousDemoBeanLocal.class);
 			if(asynchronousDemoBean != null)
 				asynchronousDemoBean.processPayment(debitCardNo, cvv, cardholderName);
