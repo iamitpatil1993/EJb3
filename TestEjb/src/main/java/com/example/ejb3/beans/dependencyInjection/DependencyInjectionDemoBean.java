@@ -1,5 +1,10 @@
 package com.example.ejb3.beans.dependencyInjection;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import javax.annotation.Resource;
 import javax.ejb.Asynchronous;
 import javax.ejb.SessionContext;
@@ -14,6 +19,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 
@@ -32,6 +38,47 @@ public class DependencyInjectionDemoBean implements DependencyInjectionDemoBeanL
 
 	@Resource
 	public SessionContext context;
+	
+	//1.Download jboss as 7
+	//Goto modules directory
+	// Create new folder mysql/main inside modules directory
+	//download mysql connector jar
+	//create module.xml file in modules/mysql/main folder
+	//give mysqlconnector name as root path, give name to module related to mysql
+	//Now go to standalon.xml
+	//go to datasources subsystem
+	//add new datasource with url, security(username, password), pool details
+	//add new driver tag under drivers tag and specify module name that we sent in module.xml file
+	//refer Module.xml and Standalone.xml files uploaded in github
+	//e.g
+/*	
+</datasources>
+	 <datasource jndi-name="java:jboss/datasources/MySqlDS" pool-name="MySqlDS">
+     <connection-url>jdbc:mysql://localhost:3306/praxifydbUS</connection-url>
+     <driver>com.mysql</driver>
+     <transaction-isolation>TRANSACTION_READ_COMMITTED</transaction-isolation>
+     <pool>
+         <min-pool-size>10</min-pool-size>
+         <max-pool-size>100</max-pool-size>
+         <prefill>true</prefill>
+     </pool>
+     <security>
+         <user-name>root</user-name>
+         <password>asdf1234</password>
+     </security>
+ 	</datasource>
+ 	<drivers>
+          <driver name="h2" module="com.h2database.h2">
+                    <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
+          </driver>
+           <driver name="com.mysql" module="com.mysql">
+                   <xa-datasource-class>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</xa-datasource-class>
+           </driver>
+      </drivers>
+</datasources>*/
+	
+	@Resource(mappedName="java:jboss/datasources/MySqlDS")
+	public DataSource dataSource;
 	
 	static {
 		LOGGER = Logger.getLogger(DependencyInjectionDemoBean.class);
@@ -74,5 +121,35 @@ public class DependencyInjectionDemoBean implements DependencyInjectionDemoBeanL
 			e.printStackTrace();
 		}
 		LOGGER.info("Inside DependencyInjectionDemoBean.sendMail() ... leaving");
+	}
+
+	@Override
+	public void dataSourceInjection() {
+		
+		if(null != dataSource) {
+			
+			LOGGER.info("DataSOurce injected successfully ...");
+			try {
+				
+				//Using JDBC to get data
+				Connection con = dataSource.getConnection();
+				Statement st = con.createStatement();
+				ResultSet resultSet = st.executeQuery("SELECT careplan_name FROM praxifydbUS.careplan_template");
+				
+				String templateName;
+				while(resultSet.next()) {
+					templateName = resultSet.getString(1); 
+					if(templateName != null)
+						System.out.println(templateName);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else {
+			LOGGER.info("DataSOurce injection falied ...");
+		}
+		
 	}
 }

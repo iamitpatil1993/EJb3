@@ -88,6 +88,20 @@
 		<servlet-name>AsynchronousSynchronousMixDemoServlet</servlet-name>
 		<servlet-class>com.example.web.asynchronous.AsynchronousSynchronousMixDemoServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>DependencyInjectionDemoServlet</display-name>
+		<servlet-name>DependencyInjectionDemoServlet</servlet-name>
+		<servlet-class>com.example.web.dependencyInjection.DependencyInjectionDemoServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>DataSourceInjectionDemoServlet</display-name>
+		<servlet-name>DataSourceInjectionDemoServlet</servlet-name>
+		<servlet-class>com.example.web.dependencyInjection.DataSourceInjectionDemoServlet</servlet-class>
+	</servlet>
 	
 	<servlet-mapping>
 		<servlet-name>SingletonTestServlet</servlet-name>
@@ -100,5 +114,13 @@
 	<servlet-mapping>
 		<servlet-name>AsynchronousSynchronousMixDemoServlet</servlet-name>
 		<url-pattern>/AsynchronousSynchronousMixDemoServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DependencyInjectionDemoServlet</servlet-name>
+		<url-pattern>/DependencyInjectionDemoServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DataSourceInjectionDemoServlet</servlet-name>
+		<url-pattern>/DataSourceInjectionDemoServlet</url-pattern>
 	</servlet-mapping>
 </web-app>
