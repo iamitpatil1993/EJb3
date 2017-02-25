@@ -116,6 +116,13 @@
 		<servlet-name>TimerServiceInjectionDemosServlet</servlet-name>
 		<servlet-class>com.example.web.dependencyInjection.TimerServiceInjectionDemosServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>JNDILookupDemoServlet</display-name>
+		<servlet-name>JNDILookupDemoServlet</servlet-name>
+		<servlet-class>com.example.web.jndilookup.JNDILookupDemoServlet</servlet-class>
+	</servlet>
 
 	
 	<servlet-mapping>
@@ -146,6 +153,10 @@
 	<servlet-mapping>
 		<servlet-name>TimerServiceInjectionDemosServlet</servlet-name>
 		<url-pattern>/TimerServiceInjectionDemosServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>JNDILookupDemoServlet</servlet-name>
+		<url-pattern>/JNDILookupDemoServlet</url-pattern>
 	</servlet-mapping>
 	
 </web-app>

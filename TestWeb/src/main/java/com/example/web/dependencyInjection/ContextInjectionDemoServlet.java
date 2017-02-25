@@ -18,20 +18,20 @@ import com.example.ejb3.localinterfaces.dependencyInjection.DependencyInjectionD
  */
 public class ContextInjectionDemoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private static final Logger LOGGER;
+	private static final Logger LOGGER;
 
-    static {
-    	LOGGER = Logger.getLogger(ContextInjectionDemoServlet.class);
-    }
+	static {
+		LOGGER = Logger.getLogger(ContextInjectionDemoServlet.class);
+	}
 	@EJB
 	DependencyInjectionDemoBeanLocal dependencyInjectionDemoBeanLocal;
-	
-	
+
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		PrintWriter printWriter = response.getWriter();
 		if(null != dependencyInjectionDemoBeanLocal) {
-			
+
 			printWriter.println("DependencyInjectionDemoBean injected successully ....");
 			dependencyInjectionDemoBeanLocal.ejbContextEnjection();
 		}
