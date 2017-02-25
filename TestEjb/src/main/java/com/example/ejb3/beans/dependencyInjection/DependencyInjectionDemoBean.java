@@ -7,8 +7,10 @@ import java.sql.Statement;
 
 import javax.annotation.Resource;
 import javax.ejb.Asynchronous;
+import javax.ejb.EJBContext;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
+import javax.ejb.TimerService;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
@@ -39,6 +41,9 @@ public class DependencyInjectionDemoBean implements DependencyInjectionDemoBeanL
 	@Resource
 	public SessionContext context;
 	
+	@Resource
+	TimerService timerService;
+
 	//1.Download jboss as 7
 	//Goto modules directory
 	// Create new folder mysql/main inside modules directory
@@ -51,7 +56,7 @@ public class DependencyInjectionDemoBean implements DependencyInjectionDemoBeanL
 	//add new driver tag under drivers tag and specify module name that we sent in module.xml file
 	//refer Module.xml and Standalone.xml files uploaded in github
 	//e.g
-/*	
+	/*	
 </datasources>
 	 <datasource jndi-name="java:jboss/datasources/MySqlDS" pool-name="MySqlDS">
      <connection-url>jdbc:mysql://localhost:3306/praxifydbUS</connection-url>
@@ -76,10 +81,13 @@ public class DependencyInjectionDemoBean implements DependencyInjectionDemoBeanL
            </driver>
       </drivers>
 </datasources>*/
-	
+
+	@Resource
+	EJBContext ejbContext;
+
 	@Resource(mappedName="java:jboss/datasources/MySqlDS")
 	public DataSource dataSource;
-	
+
 	static {
 		LOGGER = Logger.getLogger(DependencyInjectionDemoBean.class);
 	}
@@ -92,7 +100,7 @@ public class DependencyInjectionDemoBean implements DependencyInjectionDemoBeanL
 
 		if(null != mailSession) {
 			LOGGER.info("MailSession injected successfully ...");
-			
+
 			//Send email asynchronously
 			context.getBusinessObject(DependencyInjectionDemoBeanLocal.class).sendMail(subject, to, message);
 		}
@@ -125,17 +133,17 @@ public class DependencyInjectionDemoBean implements DependencyInjectionDemoBeanL
 
 	@Override
 	public void dataSourceInjection() {
-		
+
 		if(null != dataSource) {
-			
+
 			LOGGER.info("DataSOurce injected successfully ...");
 			try {
-				
+
 				//Using JDBC to get data
 				Connection con = dataSource.getConnection();
 				Statement st = con.createStatement();
 				ResultSet resultSet = st.executeQuery("SELECT careplan_name FROM praxifydbUS.careplan_template");
-				
+
 				String templateName;
 				while(resultSet.next()) {
 					templateName = resultSet.getString(1); 
@@ -150,6 +158,37 @@ public class DependencyInjectionDemoBean implements DependencyInjectionDemoBeanL
 		else {
 			LOGGER.info("DataSOurce injection falied ...");
 		}
+
+	}
+
+	@Override
+	public void ejbContextEnjection() {
+
+		if(null != ejbContext) {
+
+			LOGGER.info("ejbContetx injected succeessully inside session bean...");
+		}
+		else {
+			LOGGER.info("ejbContetx injection failed");
+		}
 		
+		if(null != context) {
+
+			LOGGER.info("Sessioncontext injected succeessully inside session bean...");
+		}
+		else {
+			LOGGER.info("Sessioncontext injection failed");
+		}
+	}
+
+	@Override
+	public void timerServiceInjection() {
+		
+		if(null != timerService) {
+			LOGGER.info("Timer Service Injected Successfullt... ready to use");
+		}
+		else {
+			LOGGER.info("Timer Service Injection failed... NOT ready to use");
+		}
 	}
 }

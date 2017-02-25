@@ -102,6 +102,20 @@
 		<servlet-name>DataSourceInjectionDemoServlet</servlet-name>
 		<servlet-class>com.example.web.dependencyInjection.DataSourceInjectionDemoServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>ContextInjectionDemoServlet</display-name>
+		<servlet-name>ContextInjectionDemoServlet</servlet-name>
+		<servlet-class>com.example.web.dependencyInjection.ContextInjectionDemoServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>TimerServiceInjectionDemosServlet</display-name>
+		<servlet-name>TimerServiceInjectionDemosServlet</servlet-name>
+		<servlet-class>com.example.web.dependencyInjection.TimerServiceInjectionDemosServlet</servlet-class>
+	</servlet>
 	
 	<servlet-mapping>
 		<servlet-name>SingletonTestServlet</servlet-name>
@@ -123,4 +137,13 @@
 		<servlet-name>DataSourceInjectionDemoServlet</servlet-name>
 		<url-pattern>/DataSourceInjectionDemoServlet</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ContextInjectionDemoServlet</servlet-name>
+		<url-pattern>/ContextInjectionDemoServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>TimerServiceInjectionDemosServlet</servlet-name>
+		<url-pattern>/TimerServiceInjectionDemosServlet</url-pattern>
+	</servlet-mapping>
+	
 </web-app>
