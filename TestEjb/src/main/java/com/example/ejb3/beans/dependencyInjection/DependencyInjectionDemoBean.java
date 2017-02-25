@@ -143,11 +143,12 @@ public class DependencyInjectionDemoBean implements DependencyInjectionDemoBeanL
 			LOGGER.info("DataSOurce injected successfully ...");
 			if(null != dataSource) {
 
+				Connection con = null;
 				LOGGER.info("DataSOurce injected successfully ...");
 				try {
 
 					//Using JDBC to get data
-					Connection con = dataSource.getConnection();
+					con = dataSource.getConnection();
 					Statement st = con.createStatement();
 					ResultSet resultSet = st.executeQuery("SELECT careplan_name FROM praxifydbUS.careplan_template");
 
@@ -161,6 +162,20 @@ public class DependencyInjectionDemoBean implements DependencyInjectionDemoBeanL
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				finally {
+
+					if(null != con) {
+
+						LOGGER.info("Closing dataSource connection .... ");
+						try {
+							con.close();
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				}
+
 			}
 			else {
 				LOGGER.info("DataSOurce injection falied ...");
