@@ -116,6 +116,7 @@
 		<servlet-name>TimerServiceInjectionDemosServlet</servlet-name>
 		<servlet-class>com.example.web.dependencyInjection.TimerServiceInjectionDemosServlet</servlet-class>
 	</servlet>
+
 	
 	<servlet-mapping>
 		<servlet-name>SingletonTestServlet</servlet-name>
@@ -137,6 +138,7 @@
 		<servlet-name>DataSourceInjectionDemoServlet</servlet-name>
 		<url-pattern>/DataSourceInjectionDemoServlet</url-pattern>
 	</servlet-mapping>
+
 	<servlet-mapping>
 		<servlet-name>ContextInjectionDemoServlet</servlet-name>
 		<url-pattern>/ContextInjectionDemoServlet</url-pattern>

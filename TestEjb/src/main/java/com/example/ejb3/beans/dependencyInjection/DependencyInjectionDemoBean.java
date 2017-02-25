@@ -40,7 +40,7 @@ public class DependencyInjectionDemoBean implements DependencyInjectionDemoBeanL
 
 	@Resource
 	public SessionContext context;
-	
+
 	@Resource
 	TimerService timerService;
 
@@ -57,6 +57,10 @@ public class DependencyInjectionDemoBean implements DependencyInjectionDemoBeanL
 	//refer Module.xml and Standalone.xml files uploaded in github
 	//e.g
 	/*	
+
+	//e.g
+/*	
+
 </datasources>
 	 <datasource jndi-name="java:jboss/datasources/MySqlDS" pool-name="MySqlDS">
      <connection-url>jdbc:mysql://localhost:3306/praxifydbUS</connection-url>
@@ -137,28 +141,31 @@ public class DependencyInjectionDemoBean implements DependencyInjectionDemoBeanL
 		if(null != dataSource) {
 
 			LOGGER.info("DataSOurce injected successfully ...");
-			try {
+			if(null != dataSource) {
 
-				//Using JDBC to get data
-				Connection con = dataSource.getConnection();
-				Statement st = con.createStatement();
-				ResultSet resultSet = st.executeQuery("SELECT careplan_name FROM praxifydbUS.careplan_template");
+				LOGGER.info("DataSOurce injected successfully ...");
+				try {
 
-				String templateName;
-				while(resultSet.next()) {
-					templateName = resultSet.getString(1); 
-					if(templateName != null)
-						System.out.println(templateName);
+					//Using JDBC to get data
+					Connection con = dataSource.getConnection();
+					Statement st = con.createStatement();
+					ResultSet resultSet = st.executeQuery("SELECT careplan_name FROM praxifydbUS.careplan_template");
+
+					String templateName;
+					while(resultSet.next()) {
+						templateName = resultSet.getString(1); 
+						if(templateName != null)
+							System.out.println(templateName);
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			}
+			else {
+				LOGGER.info("DataSOurce injection falied ...");
 			}
 		}
-		else {
-			LOGGER.info("DataSOurce injection falied ...");
-		}
-
 	}
 
 	@Override
@@ -171,7 +178,7 @@ public class DependencyInjectionDemoBean implements DependencyInjectionDemoBeanL
 		else {
 			LOGGER.info("ejbContetx injection failed");
 		}
-		
+
 		if(null != context) {
 
 			LOGGER.info("Sessioncontext injected succeessully inside session bean...");
@@ -183,7 +190,7 @@ public class DependencyInjectionDemoBean implements DependencyInjectionDemoBeanL
 
 	@Override
 	public void timerServiceInjection() {
-		
+
 		if(null != timerService) {
 			LOGGER.info("Timer Service Injected Successfullt... ready to use");
 		}
