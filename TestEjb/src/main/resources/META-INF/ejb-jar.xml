@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  version="3.0" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_0.xsd">
+
+ 
+ <!-- Define interceptor class name here -->
+ <interceptors>
+ 	<interceptor>
+ 		<interceptor-class>com.example.ejb3.interceptors.DefaultInterceptor</interceptor-class>
+ 	</interceptor>
+ </interceptors>
+ 
+ 
+ <!--  Default Interceptor must be declared in <Interceptors> element as well. Declaring it in only <interceptor-binding> is not enough
+ 	container will give below message at server startup.
+ 	
+ 	16:57:55,806 WARN  [org.jboss.as.ejb3] (MSC service thread 1-5) JBAS014110: Default interceptor class com.example.ejb3.interceptors.DefaultInterceptor is not listed in the <interceptors> section of ejb-jar.xml and will not be applied
+ -->
+  <assembly-descriptor>
+    <interceptor-binding>
+      <ejb-name>*</ejb-name>
+      <interceptor-class>com.example.ejb3.interceptors.DefaultInterceptor</interceptor-class>
+    </interceptor-binding>
+  </assembly-descriptor>
+</ejb-jar>

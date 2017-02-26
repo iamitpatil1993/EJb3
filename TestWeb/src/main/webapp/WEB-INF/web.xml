@@ -123,6 +123,13 @@
 		<servlet-name>JNDILookupDemoServlet</servlet-name>
 		<servlet-class>com.example.web.jndilookup.JNDILookupDemoServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>InterceptorHelloWorldDemoServlet</display-name>
+		<servlet-name>InterceptorHelloWorldDemoServlet</servlet-name>
+		<servlet-class>com.example.web.interceptors.simple.InterceptorHelloWorldDemoServlet</servlet-class>
+	</servlet>
 
 	
 	<servlet-mapping>
@@ -157,6 +164,10 @@
 	<servlet-mapping>
 		<servlet-name>JNDILookupDemoServlet</servlet-name>
 		<url-pattern>/JNDILookupDemoServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>InterceptorHelloWorldDemoServlet</servlet-name>
+		<url-pattern>/InterceptorHelloWorldDemoServlet</url-pattern>
 	</servlet-mapping>
 	
 </web-app>
