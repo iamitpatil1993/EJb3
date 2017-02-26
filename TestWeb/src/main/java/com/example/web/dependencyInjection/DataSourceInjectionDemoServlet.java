@@ -58,45 +58,41 @@ public class DataSourceInjectionDemoServlet extends HttpServlet {
 
 		if(null != dataSource) {
 
-			LOGGER.info("DataSOurce injected successfully ... inside DataSourceInjectionDemoServlet");
-			if(null != dataSource) {
+			Connection con = null;
+			LOGGER.info("DataSOurce injected successfully ... ... inside DataSourceInjectionDemoServlet");
+			try {
 
-				Connection con = null;
-				LOGGER.info("DataSOurce injected successfully ... ... inside DataSourceInjectionDemoServlet");
-				try {
+				//Using JDBC to get data
+				con = dataSource.getConnection();
+				Statement st = con.createStatement();
+				ResultSet resultSet = st.executeQuery("SELECT careplan_name FROM praxifydbUS.careplan_template");
 
-					//Using JDBC to get data
-					con = dataSource.getConnection();
-					Statement st = con.createStatement();
-					ResultSet resultSet = st.executeQuery("SELECT careplan_name FROM praxifydbUS.careplan_template");
-
-					printWriter.println(" ---------------------------- Template Names from Servlet -----------------------");
-					String templateName;
-					while(resultSet.next()) {
-						templateName = resultSet.getString(1); 
-						if(templateName != null)
-							printWriter.println(templateName);
-					}
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				printWriter.println(" ---------------------------- Template Names from Servlet -----------------------");
+				String templateName;
+				while(resultSet.next()) {
+					templateName = resultSet.getString(1); 
+					if(templateName != null)
+						printWriter.println(templateName);
 				}
-				finally {
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			finally {
 
-					if(null != con) {
-						
-						LOGGER.info("Closing dataSource connection .... ");
-						try {
-							con.close();
-						} catch (SQLException e) {
-							e.printStackTrace();
-						}
+				if(null != con) {
+
+					LOGGER.info("Closing dataSource connection .... ");
+					try {
+						con.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
 					}
 				}
 			}
-			else {
-				LOGGER.info("DataSOurce injection falied ... inside DataSourceInjectionDemoServlet");
-			}
+		}
+		else {
+			LOGGER.info("DataSOurce injection falied ... inside DataSourceInjectionDemoServlet");
 		}
 	}
 
